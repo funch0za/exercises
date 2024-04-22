@@ -2,4 +2,4 @@
 
 Tasks from K&R2 book.
 
-![book](image.png)
+![book](images/image.png)
