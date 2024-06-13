@@ -4,7 +4,7 @@
 
 int my_getline(char s[]);
 void reverse(char s[], int len);
-void clean_str(char s[]);
+void clean_str(char s[], int len);
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
     while ((len = my_getline(s)) > 0) {
         reverse(s, len);
         printf("%s\n", s);
-        clean_str(s);
+        clean_str(s, len);
     }
 }
 
@@ -40,7 +40,9 @@ void reverse(char s[], int len)
     }
 }
 
-void clean_str(char s[])
+void clean_str(char s[], int len)
 {
-    s[0] = '\0';
+    for (int i = 0; i < len; ++i) {
+        s[i] = '\0';
+    }
 }
