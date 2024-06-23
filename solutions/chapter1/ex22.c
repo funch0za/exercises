@@ -4,7 +4,6 @@
 
 // balabalabbala
 
-
 /*
 adadmaksnkjfnjksdnfs
 */
@@ -20,21 +19,21 @@ int main() {
       endline = 0;
       putchar('\n');
       /*
-      ddddd*/
+         ddddd */
     } else if (endline >= N) {
-      if (c != ' ' && c != '\t') { /*ababbababababababab*/
+      if (c != ' ' && c != '\t') { /*ababbababababababab */
         endline = 1;
         putchar('\n');
       }
-      //1
-      //2
+      // 1
+      // 2
       //
 
       //
       putchar(c);
     } else {
       ++endline;
-      putchar(c);	// abbabab
+      putchar(c); // abbabab
     }
   }
 }
