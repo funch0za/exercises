@@ -1,7 +1,7 @@
 int main(void) {
-	int x = 23 * 60 - (1) - (;
+        int x = 23 * 60 - (1) - (;
 
 	if (x) {
-		int y = x;
+    int y = x;
 
 }
