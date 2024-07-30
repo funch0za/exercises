@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-enum {N = 10};
+enum { N = 10 };
 
 int binsearch_1(int x, int v[], int n) {
   int low, high, mid;
@@ -35,11 +35,11 @@ int binsearch_2(int x, int v[], int n) {
       low = mid;
     }
   }
-  
+
   mid = low;
   if (v[mid] != x) {
     mid = -1;
-  }  
+  }
 
   return mid;
 }
@@ -50,11 +50,10 @@ int main(void) {
   for (int i = -400; i <= 400; ++i) {
     int res1 = binsearch_1(i, a, N);
     int res2 = binsearch_2(i, a, N);
-    
+
     if (res1 != res2) {
       puts("ERROR");
       printf("i : %d\n1 : %d\n2 : %d\n", i, res1, res2);
     }
   }
-
 }
