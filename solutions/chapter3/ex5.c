@@ -1,20 +1,18 @@
 #include <string.h>
-#include <limits.h>
 #include <stdio.h>
 
+enum {N = 10};
+
+void itob(int n, char s[], int b);
 void reverse(char s[]);
-void itoa(int n, char s[]);
 
 int main(void) {
-  int numbers[5] = {-((1<<30) + ((1<<30) - 1)), 45, -12, 0, INT_MIN};
-
-  for (int i = 0; i < 5; ++i) {
-    printf("%d\n", numbers[i]);
-    char s[10];
-    itoa(numbers[i], s);
+  int n, b;
+  while (scanf("%d%d", &n, &b) == 2) {
+    char s[N];
+    itob(n, s, b);
     puts(s);
   }
-
 }
 
 void reverse(char s[]) {
@@ -27,7 +25,7 @@ void reverse(char s[]) {
   }
 }
 
-void itoa(int n, char s[]) {
+void itob(int n, char s[], int b) {
   int i, sign;
   
   unsigned int buffer = n;
@@ -35,13 +33,21 @@ void itoa(int n, char s[]) {
   if ((sign = n) < 0) {
     buffer = -n;
   }
+  
   i = 0;
   do {
-    s[i++] = buffer % 10 + '0';
-  } while ((buffer /= 10) > 0);
+    if (buffer % b >= 10) {
+      s[i++] = buffer % b - 10 + 'a';
+    } else {
+      s[i++] = buffer % b + '0';
+    }
+
+  } while ((buffer /= b) > 0);
+  
   if (sign < 0) {
     s[i++] = '-';
   }
+  
   s[i] = '\0';
   reverse(s);
 }
