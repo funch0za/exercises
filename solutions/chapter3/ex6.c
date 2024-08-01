@@ -1,13 +1,14 @@
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
- #define max(a,b) \
-      ({ __typeof__ (a) _a = (a); \
-              __typeof__ (b) _b = (b); \
-                   _a > _b ? _a : _b; })
+#define max(a, b)                                                              \
+  ({                                                                           \
+    __typeof__(a) _a = (a);                                                    \
+    __typeof__(b) _b = (b);                                                    \
+    _a > _b ? _a : _b;                                                         \
+  })
 
-
-enum {N = 100};
+enum { N = 100 };
 
 void reverse(char s[]);
 void itoa(int n, char s[], int w);
@@ -33,7 +34,7 @@ void reverse(char s[]) {
 
 void itoa(int n, char s[], int w) {
   int i, sign;
- 
+
   unsigned int buffer = n;
   memset(s, ' ', w);
   if ((sign = n) < 0) {
@@ -50,4 +51,3 @@ void itoa(int n, char s[], int w) {
   s[max(i, w)] = '\0';
   reverse(s);
 }
-    

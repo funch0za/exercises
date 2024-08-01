@@ -1,12 +1,12 @@
-#include <string.h>
 #include <limits.h>
 #include <stdio.h>
+#include <string.h>
 
 void reverse(char s[]);
 void itoa(int n, char s[]);
 
 int main(void) {
-  int numbers[5] = {-((1<<30) + ((1<<30) - 1)), 45, -12, 0, INT_MIN};
+  int numbers[5] = {-((1 << 30) + ((1 << 30) - 1)), 45, -12, 0, INT_MIN};
 
   for (int i = 0; i < 5; ++i) {
     printf("%d\n", numbers[i]);
@@ -14,7 +14,6 @@ int main(void) {
     itoa(numbers[i], s);
     puts(s);
   }
-
 }
 
 void reverse(char s[]) {
@@ -29,7 +28,7 @@ void reverse(char s[]) {
 
 void itoa(int n, char s[]) {
   int i, sign;
-  
+
   unsigned int buffer = n;
 
   if ((sign = n) < 0) {

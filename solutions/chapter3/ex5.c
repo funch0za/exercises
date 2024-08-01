@@ -1,7 +1,7 @@
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
-enum {N = 10};
+enum { N = 10 };
 
 void itob(int n, char s[], int b);
 void reverse(char s[]);
@@ -27,13 +27,13 @@ void reverse(char s[]) {
 
 void itob(int n, char s[], int b) {
   int i, sign;
-  
+
   unsigned int buffer = n;
 
   if ((sign = n) < 0) {
     buffer = -n;
   }
-  
+
   i = 0;
   do {
     if (buffer % b >= 10) {
@@ -43,11 +43,11 @@ void itob(int n, char s[], int b) {
     }
 
   } while ((buffer /= b) > 0);
-  
+
   if (sign < 0) {
     s[i++] = '-';
   }
-  
+
   s[i] = '\0';
   reverse(s);
 }
