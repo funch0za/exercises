@@ -1,9 +1,9 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int main() {
   int fd;
@@ -24,7 +24,7 @@ int main() {
    * */
   if ((fd = open("myfile", O_WRONLY | O_CREAT, 0666)) < 0) {
     /*
-     * Если файл открыть не удалось, печатаем об 
+     * Если файл открыть не удалось, печатаем об
      * этом сообщение и прекращаем работу
      * */
     printf("Can\'t open file\n");

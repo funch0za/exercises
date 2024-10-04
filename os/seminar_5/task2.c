@@ -1,8 +1,8 @@
 #include <stddef.h>
-#include <sys/types.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int main() {
   int fd[2];
@@ -25,10 +25,10 @@ int main() {
   }
   printf("%s\n", resstring);
   if (close(fd[0]) < 0) {
-    printf("Can\'t close input stream\n");  
+    printf("Can\'t close input stream\n");
   }
   if (close(fd[1]) < 0) {
-    printf("Can\'t close output stream\n");  
+    printf("Can\'t close output stream\n");
   }
   return 0;
 }
