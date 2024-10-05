@@ -1,46 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/_types/_pid_t.h>
 #include <sys/types.h>
 #include <unistd.h>
 
+#define N 14
+
 int main() {
-  int fd[2], result;
-  size_t size;
-  char resstring[14];
-  
-  if (pipe(fd) == -1) {
-    printf("Can\'t create pipe\n");
+  int pipefd[2];
+  if (pipe(pipefd) < 0) {
+    puts("Can\'t create pipe\n");
     exit(EXIT_FAILURE);
   } else {
-    printf("Pipe is created\n");
-  }
-  
-  result = fork();
-  
-  if (result) {
-    printf("Can\'t fork child\n");
-    exit(-1);
-  } else if (result > 0) {
-    close(fd[0]);
-    size = write(fd[1], "Hello, world!", 14);
-  
-    if (size != 14) {
-      printf("Can\'t write all string\n");
-      exit(-1);
-    }
-    close(fd[1]);
-    printf("Parent exit\n");
-  } else {
-    close(fd[1]);
-    size = read(fd[0], resstring, 14);
-  
-    if (size < 0) {
-      printf("Can\'t read string\n");
-      exit(EXIT_FAILURE);
-    }
-    printf("%s\n", resstring);
-    close(fd[0]);
+    puts("Pipe is created\n");
   }
 
-  return 0;
+  size_t size;
+  switch (fork()) {
+    case -1:
+      puts("Can\'t fork child");
+      exit(EXIT_FAILURE);
+      break;
+    case 0:
+      puts("Child");
+      close(pipefd[1]);
+      
+      char str[N];
+      size = read(pipefd[0], str, N);
+
+      if (size != N) {
+        puts("Can\t read string");
+        exit(EXIT_FAILURE);
+      }
+
+      puts(str);
+      close(pipefd[1]);
+      printf("Child exit");
+      break;
+    default:
+      puts("Parent");
+      close(pipefd[0]);
+      size = write(pipefd[1], "Hello, world!", N);
+
+      if (size != N) {
+        puts("Can\'t write all string");
+        exit(EXIT_FAILURE);
+      }
+      close(pipefd[1]);
+
+      puts("Parent exit");
+      break;
+  }
+
+  return EXIT_SUCCESS;
 }
